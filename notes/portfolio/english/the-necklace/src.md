@@ -1,0 +1,7 @@
+## Summary of The Dowry By Guy De Maupassant
+
+In this short story of less than 2,000 words, Maitre Simon Lebrument and Mademoiselle Jeanne Cordier just got married. From Jeanne's narrative, it's a marriage of tender love, but from her hometown of Boutigny-le-Rebours it's a marriage of money. Simon had bought a lawyer practice in Paris and Jeanne had a considerable dowry.
+
+I blame Jeanne's parents. Jeanne sounds young and naive. Simon wanted to whisk her away to Paris for a few days and demanded of Jeanne's parents the full dowry to carry in his pocket. They thought it unwise to carry so much money at once while travelling, but gave it to Simon anyway. I truly expected the money to be blown away and the couple would be poor, particularly since once in Paris Simon insisted that he ride on top of the omnibus to smoke a cigarette. The resulting situation isn't much better.
+
+At this point I've read many Guy de Maupasant short stories. Like many of the others, this one reads clear and holds my attention. Some authors make it easy to loose the meaning of the story because the message is indirect and obscuring the four leaf clover in a flowering three leaf clover patch. I don't have to worry about that with Maupassant. I consider his stories a path into historical France with realistic happenings and real world caricatures. For The Dowry, I can also easily imagine their modern day counterparts and want to shake my head with my hands to my face. These things are still real.

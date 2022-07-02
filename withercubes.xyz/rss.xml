@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+
+<channel>
+<title>WitherCubes</title>
+<description>WitherCubes RSS</description>
+<language>en-us</language>
+<link>https://withercubes.xyz/rss.xml</link>
+<atom:link href="https://withercubes.xyz/rss.xml" rel="self" type="application/rss+xml" />
+<image>
+<title>WitherCubes</title>
+<url>https://withercubes.xyz/avatar.png</url>
+<link>https://withercubes.xyz/rss.xml</link>
+</image>
+
+<!-- CONTENT -->
+
+<item>
+<title>How to use fsck</title>
+<guid>https://withercubes.xyz/blog/fsck-repair/index.html</guid>
+<link>https://withercubes.xyz/blog/fsck-repair/index.html</link>
+<pubDate>Tue, 11 Jan 2022 15:26:10 +0530</pubDate>
+<description><![CDATA[
+<p>fsck (file system consistency check) is a system utility on linux to help repair errors in a filesystem like bad superblocks.</p>
+<h2>Options available in fsck</h2>
+<p>Fsck command needs to be run with root privileges. You can use it with different arguments. Their usage depend on your specific case. Below you will see some of the more important options:</p>
+<ul>
+<li><code>-A</code> - Used for checking all filesystems. The list is taken from <code>&#47;etc&#47;fstab</code>.</li>
+<li><code>-C</code> - Shows progress bar.</li>
+<li><code>-l</code> - Locks the device to guarantee no other program will try to use the partition during the check.</li>
+<li><code>-M</code> - Do not check mounted filesystems.</li>
+<li><code>-N</code> - Only show what would be done – no actual changes are made.</li>
+<li><code>-P</code> - If you want to check filesystems in parallel, including root.</li>
+<li><code>-R</code> - Do not check root filesystem. This is useful only with <code>-A</code>.</li>
+<li><code>-r</code> - Provide statistics for each device that is being checked.</li>
+<li><code>-T</code> - Does not show the title.</li>
+<li><code>-t</code> - Exclusively specify the filesystem types to be checked. Types can be comma separated list.</li>
+<li><code>-V</code> - Provide description what is being done.</li>
+</ul>
+<h2>How to run fsck to repair linux file system errors</h2>
+<p>In order to run fsck, you will need to ensure that the partition you are going to check is not mounted. For this case, I will use <code>/dev/sdX</code> as the example drive.</p>
+<p>First, you need to unmount the drive:</p>
+<pre><code># umount /dev/sdX
+</code></pre>
+<p>Then fsck can be run with:</p>
+<pre><code># fsck /dev/sdX
+</code></pre>
+<p>Sometimes fsck can guess the wrong type of filesystem and cause a lot of other problems. To avoid that, specify the filesystem type.</p>
+<p>I am going to take ext4 as the filesystem type for this example.</p>
+<pre><code># fsck.ext4 /dev/sdX
+</code></pre>
+<h2>Understanding fsck exit codes</h2>
+<p>After running fsck, it will return an exit code. These cods can be seen in fsck’s manual by running:</p>
+<pre><code># man fsck
+
+0      No errors
+1      Filesystem errors corrected
+2      System should be rebooted
+4      Filesystem errors left uncorrected
+8      Operational error
+16     Usage or syntax error
+32     Checking canceled by user request
+128    Shared-library error
+</code></pre>
+<p>If your shell prompt does not output the exit code, you can find it out by running <code>echo $?</code> (if you use bash or zsh as your shell).</p>
+<h2>Repair linux filesystem errors</h2>
+<p>Sometimes more than one error can be found on a filesystem. In such cases you may want fsck to automatically attempt to correct the errors. This can be done with:</p>
+<pre><code># fsck -y /dev/sdX
+</code></pre>
+<p>The <code>-y</code> flag, automatically <code>“yes”</code> to any prompts from fsck to correct an error.</p>
+<br>
+<footer>Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a></footer>
+]]></description>
+</item>
+
+<item>
+<title>Publish your packages in the AUR</title>
+<guid>https://withercubes.xyz/blog/publish-packages-in-aur/index.html</guid>
+<link>https://withercubes.xyz/blog/publish-packages-in-aur/index.html</link>
+<pubDate>Sun, 19 Sep 2021 20:10:45 +0530</pubDate>
+<description><![CDATA[
+<p>This is a blog on how to submit and publish your packages in the Arch User Repository or AUR. The AUR is a community-driven repository for Arch-based Linux distributions users. It contains package descriptions named PKGBUILDs that allow you to compile a package from source with makepkg and then install it via pacman (package manager in Arch Linux).</p>
+<h2>What topics I will cover</h2>
+<ul>
+<li><a href="#setting-up-account">Setting up the AUR account.</a></li>
+<li><a href="#creating-needed-files">Creating needed files.</a></li>
+<li><a href="#uploading-files-to-aur">Uploading the PKGBUILD to the AUR.</a></li>
+<li><a href="#testing-aur-package">Testing the AUR package.</a></li>
+</ul>
+<h2>What topics I will not cover</h2>
+<ul>
+<li>How to create a PKGBUILD - There is already an amazing <a href="https://www.youtube.com/watch?v=crnGzF43aoc">video tutorial</a> and an <a href="https://wiki.archlinux.org/title/Creating_packages">ArchWIki article</a> on this topic.</li>
+</ul>
+<h2 id="setting-up-account">Setting up the AUR account</h2>
+<p>First you need to go to <a href="https://aur.archlinux.org">aur.archlinux.org</a> and create an account, filling the details. The next step is to setup ssh keys so that you can submit packages. First you need to generate your ssh keys using this command:</p>
+<pre><code>$ ssh-keygen -f ~/.ssh/aur</code></pre>
+<p>The next step is to add these lines to <code>~/.ssh/config</code>. If you don't have the file, create one:</p>
+<pre><code>Host aur.archlinux.org
+  IdentityFile ~/.ssh/aur
+  User USERNAME</code></pre>
+<p>Replace USERNAME with you AUR account username.</p>
+<p>The final step is to copy the contents of <code>~/.ssh/aur.pub</code> and paste it in the SSH Public Key section in My Account tab and save the changes.</p>
+<h2 id="creating-needed-files">Creating needed files</h2>
+<p>In the location where you have kept your PKGBUILD file, run this command to generate the .SRCINFO file:</p>
+<pre><code>$ makepkg --printsrcinfo > .SRCINFO</code></pre>
+<p>It is recommended to not manually change the .SRCINFO file. The SRCINFO file is the metadata file for the AUR. When updating your package, run this command one more time to update the metadata.</p>
+<h2 id="uploading-files-to-aur">Uploading the PKGBUILD to the AUR</h2>
+<p>To upload the package to the AUR, you first need to git clone your AUR repository.</p>
+<pre><code>$ git clone ssh://aur@aur.archlinux.org/YOUR_PACKAGE_NAME.git</code></pre>
+<p>You maybe thinking that you haven&#8217;t created the repository, but you are able to clone the repository. The thing is that when you clone the repository, it creates the repository.</p>
+<p>The next thing to do is to copy the PKGBUILD, .SRCINFO and any other files needed for the package to the repository's folder.</p>
+<p>The last thing to do is to check if all your files needed for the package are there and commit to the repository using the following command:</p>
+<pre><code>$ git add . && git commit -m "YOUR_COMMIT_MESSAGE" && git push</code></pre>
+<p>Note that when pushing the changes to the repository, you will be not asked for your password because the ssh keys are setup.</p>
+<h2 id="testing-aur-package">Testing the AUR package</h2>
+<p>Once you have pushed your changes to the AUR, test your package if it is building and installing properly, just to be in the safe side. For testing use an AUR helper to install the package or install it manually by running:</p>
+<pre><code>$ git clone https://aur.archlinux.org/YOUR_PACKAGE_NAME.git && cd YOUR_PACKAGE_NAME && makepkg -si</code></pre>
+<p>If it builds properly, that's amazing, but if there are any issues, debug it and push your changes.</p>
+<p>That is it for this blog on how to submit and publish your packages in the AUR. Make sure you check out the sources I mentioned above for making a proper PKGBUILD.</p>
+<br>
+<footer>Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a></footer>
+]]></description>
+</item>
+
+<item>
+<title>How to play Nintendo DS games on Linux</title>
+<guid>https://withercubes.xyz/blog/play-ds-games-linux/index.html</guid>
+<link>https://withercubes.xyz/blog/play-ds-games-linux/index.html</link>
+<pubDate>Mon, 13 Sep 2021 14:32:24 +0530</pubDate>
+<description><![CDATA[
+<p>This is a quick and dirty tutorial on how to play Nintendo DS games on linux using MelonDS emulator. Back in its prime, the Nintendo DS was one of the most successful hand-held consoles of all time. Unfortunately, that time has passed, and Nintendo doesn’t sell the console in stores anymore. Many people wish to play the old games for entertainment, so let&#8217;s see how to play Nintendo DS games on linux.</p>
+<h2>Install MelonDS</h2>
+<h3>Snap</h3>
+<pre><code>$ sudo snap install melonds</code></pre>
+<h3>Arch Linux (using AUR)</h3>
+<pre><code>$ git clone https://aur.archlinux.org/melonds-git.git && cd melonds-git && makepkg -si</code></pre>
+<h3>Other Distributions</h3>
+<ul>
+<li>Visit the <a href="http://melonds.kuribo64.net/downloads.php">MelonDS website</a> and download the latest <strong>Linux x64</strong> version.</li>
+<li>Extract the archive file to /usr/bin or /usr/local/bin.</li>
+</ul>
+<h2>Getting Nintendo DS Firmware and Game ROMS</h2>
+<p>If you have your own dump of Nintendo DS games and firmware, it is well and good, but if you don&#8217;t have them you can download them from the internet (there are some legal issues). Your best friend for this is archive.org.</p>
+<ul>
+<li><a href="https://archive.org/details/ds-firmware_dsi-nand-and-firmware">Nintendo DS firmware</a></li>
+<li><a href="https://r-roms.github.io">Nintendo DS Games</a></li>
+<li>If you want any other games, you can figure it out yourself.</li>
+</ul>
+<p><strong>Note: I do not condone any piracy, I am just linking to public sources. Download the game ROMS and firmware at your own risk.</strong></p>
+<h2>Setting up MelonDS</h2>
+<p>First open up melonDS and go to Config → Emu Settings → DS-mode, select your Nintendo DS firmware location respectively and hit OK.</p>
+<img src="firmware-location.png" alt="firmware-location" />
+<p>Then the next step is to configure the controls. To do that go to Config → Input and hotkeys → DS keypad and configure your controls according to your needs and hit OK. Here is an example of my controls configuration.</p>
+<img src="controls.png" alt="controls" />
+<p>The last basic step to do is to configure the video settings and the screen layout. To adjust the video settings go to Config → Video settings and tweak the setting according to your needs. The screen layout can also be changed by choosing the desired screen layout in the same config menu.</p>
+<h2>Start Playing!</h2>
+<p>Once you have configured MelonDS, its time to start playing. Most of the games work perfectly fine, but you may have issues in some games like framerate issues and audio issues. The solution is to change the internal resolution in video settings.</p>
+<h2>Gameplay Screenshots</h2>
+<h3>Sonic Colors</h3>
+<img src="sonic-colors.png" alt="sonic-colors" />
+<h3>Call Of Duty - Black Ops</h3>
+<img src="call-of-duty.png" alt="call-of-duty" />
+<br>
+<footer>Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a></footer>
+]]></description>
+</item>
+
+</channel>
+</rss>

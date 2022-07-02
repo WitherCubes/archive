@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Publish your packages in the AUR</title>
+
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="shortcut icon" type="image/x-icon" href="../../avatar.png">
+<link rel="alternate" type="application/rss+xml" title="Subscribe to WitherCubes" href="https://withercubes.xyz/rss.xml"/>
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width">
+<meta name="author" content="WitherCubes">
+<meta name="title" content="Publish your packages in the AUR">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://withercubes.xyz/blog/publish-packages-in-aur">
+<meta property="og:title" content="Publish your packages in the AUR">
+<meta property="og:description" content="This is a blog on how to submit and publish your package in the AUR.">
+<meta property="og:image" content="https://withercubes.xyz/meta/arch-linux-logo.jpg">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://withercubes.xyz/blog/publish-packages-in-aur">
+<meta property="twitter:title" content="Publish your packages in the AUR">
+<meta property="twitter:description" content="This is a blog on how to submit and publish your package in the AUR.">
+<meta property="twitter:image" content="https://withercubes.xyz/meta/arch-linux-logo.jpg">
+
+</head>
+
+<body>
+
+<!-- CONTENT -->
+
+<h1>Publish your packages in the AUR</h1>
+
+<p>This is a blog on how to submit and publish your packages in the Arch User Repository or AUR. The AUR is a community-driven repository for Arch-based Linux distributions users. It contains package descriptions named PKGBUILDs that allow you to compile a package from source with makepkg and then install it via pacman (package manager in Arch Linux).</p>
+
+<h2>What topics I will cover</h2>
+
+<ul>
+<li><a href="#setting-up-account">Setting up the AUR account.</a></li>
+<li><a href="#creating-needed-files">Creating needed files.</a></li>
+<li><a href="#uploading-files-to-aur">Uploading the PKGBUILD to the AUR.</a></li>
+<li><a href="#testing-aur-package">Testing the AUR package.</a></li>
+</ul>
+
+<h2>What topics I will not cover</h2>
+
+<ul>
+<li>How to create a PKGBUILD - There is already an amazing <a href="https://www.youtube.com/watch?v=crnGzF43aoc">video tutorial</a> and an <a href="https://wiki.archlinux.org/title/Creating_packages">ArchWIki article</a> on this topic.</li>
+</ul>
+
+<h2 id="setting-up-account">Setting up the AUR account</h2>
+
+<p>First you need to go to <a href="https://aur.archlinux.org">aur.archlinux.org</a> and create an account, filling the details. The next step is to setup ssh keys so that you can submit packages. First you need to generate your ssh keys using this command:</p>
+
+<pre><code>$ ssh-keygen -f ~/.ssh/aur</code></pre>
+
+<p>The next step is to add these lines to <code>~/.ssh/config</code>. If you don't have the file, create one:</p>
+
+<pre><code>Host aur.archlinux.org
+  IdentityFile ~/.ssh/aur
+  User USERNAME</code></pre>
+
+<p>Replace USERNAME with you AUR account username.</p>
+
+<p>The final step is to copy the contents of <code>~/.ssh/aur.pub</code> and paste it in the SSH Public Key section in My Account tab and save the changes.</p>
+
+<h2 id="creating-needed-files">Creating needed files</h2>
+
+<p>In the location where you have kept your PKGBUILD file, run this command to generate the .SRCINFO file:</p>
+
+<pre><code>$ makepkg --printsrcinfo > .SRCINFO</code></pre>
+
+<p>It is recommended to not manually change the .SRCINFO file. The SRCINFO file is the metadata file for the AUR. When updating your package, run this command one more time to update the metadata.</p>
+
+<h2 id="uploading-files-to-aur">Uploading the PKGBUILD to the AUR</h2>
+
+<p>To upload the package to the AUR, you first need to git clone your AUR repository.</p>
+
+<pre><code>$ git clone ssh://aur@aur.archlinux.org/YOUR_PACKAGE_NAME.git</code></pre>
+
+<p>You maybe thinking that you haven&#8217;t created the repository, but you are able to clone the repository. The thing is that when you clone the repository, it creates the repository.</p>
+
+<p>The next thing to do is to copy the PKGBUILD, .SRCINFO and any other files needed for the package to the repository's folder.</p>
+
+<p>The last thing to do is to check if all your files needed for the package are there and commit to the repository using the following command:</p>
+
+<pre><code>$ git add . && git commit -m "YOUR_COMMIT_MESSAGE" && git push</code></pre>
+
+<p>Note that when pushing the changes to the repository, you will be not asked for your password because the ssh keys are setup.</p>
+
+<h2 id="testing-aur-package">Testing the AUR package</h2>
+
+<p>Once you have pushed your changes to the AUR, test your package if it is building and installing properly, just to be in the safe side. For testing use an AUR helper to install the package or install it manually by running:</p>
+
+<pre><code>$ git clone https://aur.archlinux.org/YOUR_PACKAGE_NAME.git && cd YOUR_PACKAGE_NAME && makepkg -si</code></pre>
+
+<p>If it builds properly, that's amazing, but if there are any issues, debug it and push your changes.</p>
+
+<p>That is it for this blog on how to submit and publish your packages in the AUR. Make sure you check out the sources I mentioned above for making a proper PKGBUILD.</p>
+
+<br>
+<footer>Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a></footer>
+</body>
+</html>

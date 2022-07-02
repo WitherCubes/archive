@@ -1,0 +1,2 @@
+# 60% Quality
+convert librar.jpg -quality 60 library.jpg

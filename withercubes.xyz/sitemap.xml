@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://withercubes.xyz/</loc>
+  </url>
+  <url>
+    <loc>https://withercubes.xyz/rss.xml</loc>
+  </url>
+  <url>
+    <loc>https://withercubes.xyz/blog/</loc>
+  </url>
+  <url>
+    <loc>https://withercubes.xyz/blog/fsck-repair/</loc>
+  </url>
+  <url>
+    <loc>https://withercubes.xyz/blog/publish-packages-in-aur/</loc>
+  </url>
+  <url>
+    <loc>https://withercubes.xyz/blog/play-ds-games-linux/</loc>
+  </url>
+</urlset>

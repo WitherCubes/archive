@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>How to play Nintendo DS games on Linux</title>
+
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="shortcut icon" type="image/x-icon" href="../../avatar.png">
+<link rel="alternate" type="application/rss+xml" title="Subscribe to WitherCubes" href="https://withercubes.xyz/rss.xml"/>
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width">
+<meta name="author" content="WitherCubes">
+<meta name="title" content="How to play Nintendo DS games on Linux">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://withercubes.xyz/blog/play-ds-games-linux">
+<meta property="og:title" content="How to play Nintendo DS games on Linux">
+<meta property="og:description" content="How to play Nintendo DS games on linux using MelonDS and enjoy the glorious games.">
+<meta property="og:image" content="https://withercubes.xyz/meta/nintendo-ds.jpg">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://withercubes.xyz/blog/play-ds-games-linux">
+<meta property="twitter:title" content="How to play Nintendo DS games on Linux">
+<meta property="twitter:description" content="How to play Nintendo DS games on linux using MelonDS and enjoy the glorious games.">
+<meta property="twitter:image" content="https://withercubes.xyz/meta/nintendo-ds.jpg">
+
+</head>
+
+<body>
+
+<!-- CONTENT -->
+
+<h1>How to play Nintendo DS games on Linux</h1>
+
+<p>This is a quick and dirty tutorial on how to play Nintendo DS games on linux using MelonDS emulator. Back in its prime, the Nintendo DS was one of the most successful hand-held consoles of all time. Unfortunately, that time has passed, and Nintendo doesn’t sell the console in stores anymore. Many people wish to play the old games for entertainment, so let&#8217;s see how to play Nintendo DS games on linux.</p>
+
+<h2>Install MelonDS</h2>
+
+<h3>Snap</h3>
+<pre><code>$ sudo snap install melonds</code></pre>
+
+<h3>Arch Linux (using AUR)</h3>
+<pre><code>$ git clone https://aur.archlinux.org/melonds-git.git && cd melonds-git && makepkg -si</code></pre>
+
+<h3>Other Distributions</h3>
+
+<ul>
+<li>Visit the <a href="http://melonds.kuribo64.net/downloads.php">MelonDS website</a> and download the latest <strong>Linux x64</strong> version.</li>
+<li>Extract the archive file to /usr/bin or /usr/local/bin.</li>
+</ul>
+
+<h2>Getting Nintendo DS Firmware and Game ROMS</h2>
+
+<p>If you have your own dump of Nintendo DS games and firmware, it is well and good, but if you don&#8217;t have them you can download them from the internet (there are some legal issues). Your best friend for this is archive.org.</p>
+
+<ul>
+<li><a href="https://archive.org/details/ds-firmware_dsi-nand-and-firmware">Nintendo DS firmware</a></li>
+<li><a href="https://r-roms.github.io">Nintendo DS Games</a></li>
+<li>If you want any other games, you can figure it out yourself.</li>
+</ul>
+
+<p><strong>Note: I do not condone any piracy, I am just linking to public sources. Download the game ROMS and firmware at your own risk.</strong></p>
+
+<h2>Setting up MelonDS</h2>
+
+<p>First open up melonDS and go to Config → Emu Settings → DS-mode, select your Nintendo DS firmware location respectively and hit OK.</p>
+<img src="firmware-location.png" alt="firmware-location" />
+
+<p>Then the next step is to configure the controls. To do that go to Config → Input and hotkeys → DS keypad and configure your controls according to your needs and hit OK. Here is an example of my controls configuration.</p>
+
+<img src="controls.png" alt="controls" />
+
+<p>The last basic step to do is to configure the video settings and the screen layout. To adjust the video settings go to Config → Video settings and tweak the setting according to your needs. The screen layout can also be changed by choosing the desired screen layout in the same config menu.</p>
+
+<h2>Start Playing!</h2>
+
+<p>Once you have configured MelonDS, its time to start playing. Most of the games work perfectly fine, but you may have issues in some games like framerate issues and audio issues. The solution is to change the internal resolution in video settings.</p>
+
+<h2>Gameplay Screenshots</h2>
+
+<h3>Sonic Colors</h3>
+
+<img src="sonic-colors.png" alt="sonic-colors" />
+
+<h3>Call Of Duty - Black Ops</h3>
+
+<img src="call-of-duty.png" alt="call-of-duty" />
+
+<br>
+<footer>Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a></footer>
+</body>
+</html>

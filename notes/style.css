@@ -1,0 +1,138 @@
+@font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+         url('./fonts/source-code-pro-v20-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('./fonts/source-code-pro-v20-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''),
+         url('./fonts/source-code-pro-v20-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('./fonts/source-code-pro-v20-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    font-style: italic;
+    font-weight: 400;
+    src: local(''),
+         url('./fonts/source-code-pro-v20-latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('./fonts/source-code-pro-v20-latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    font-style: italic;
+    font-weight: 700;
+    src: local(''),
+         url('./fonts/source-code-pro-v20-latin-700italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('./fonts/source-code-pro-v20-latin-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+:root {
+    --fg: #D9E0EE;
+    --bg: #1E1E2E;
+    --bg_2: #302D41;
+    --bg_3: #1A1826;
+    --link_v: #96CDFB;
+    --link_h: #B5E8E0;
+    --h_color: #ABE9B3;
+}
+
+* {
+    color: var(--fg);
+}
+
+html {
+    padding: 0px;
+    margin: 10px;
+    scroll-behavior: smooth;
+}
+
+p, body, code, pre, li, ul {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    letter-spacing: 1px;
+}
+
+body {
+    color: var(--fg);
+    background: var(--bg);
+    font-family: 'Source Code Pro', monospace;
+    word-wrap: break-word;
+    width: 85%;
+    max-width: 950px;
+    padding: 40px 40px 40px 40px;
+    text-align: left;
+    margin: 0 auto;
+    max-width: 50em;
+    padding: 0 2em 0 2em;
+}
+
+pre {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    overflow-x: auto;
+    padding: 1em;
+}
+
+code {
+    font-family: monospace;
+    background: var(--bg_2);
+    padding: 2px 5px;
+}
+
+pre code {
+    background: var(--bg_3);
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+li, ul {
+    position: relative;
+    left: -11px;
+}
+
+ul.blog-posts {
+    list-style-type: none;
+}
+
+ul.blog-posts li {
+    display: flex;
+}
+
+ul.blog-posts li span {
+    flex: 0 0 160px;
+}
+
+h1, h2, h3 {font-weight: bold; margin-top: 1em;}
+h1, h2, h3, h4, h5, h6 {color: var(--h_color);}
+h1 {font-size: 2em;}
+a {text-decoration: none;}
+a:active, a:link, a:visited {color: var(--link_v);}
+a:hover {color: var(--link_h); text-decoration: none;}
+pre {font-family: monospace;}
+hr {margin: 0px 0px 0px 0px;}
+nav a {margin-right: 10px;}
+footer {font-size: 1rem;}
+
+::-webkit-scrollbar {width: 8px;}
+::-webkit-scrollbar-track {background: var(--bg);}
+::-webkit-scrollbar-thumb {background: var(--bg_2);}
+::-webkit-scrollbar-thumb:hover {background: var(--bg_3);}
+::-moz-selection {color: var(--fg); background: var(--bg_2);}
+::selection {color: var(--fg); background: var(--bg_2);}
